@@ -36,7 +36,9 @@
         "forever": "latest",
         "bower": "latest",
         "grunt": "latest",
-        "grunt-cli": "latest"
+        "grunt-cli": "latest",
+        "bitcoin":"latest",
+        "q":"latest"
     },
     "devDependencies": {
         "supertest": "latest",

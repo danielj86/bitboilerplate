@@ -50,8 +50,8 @@ module.exports = function(app, passport, auth) {
     app.get('/auth/google', passport.authenticate('google', {
         failureRedirect: '/signin',
         scope: [
-            'https://www.googleapis.com/auth/userinfo.profile',
-            'https://www.googleapis.com/auth/userinfo.email'
+        'https://www.googleapis.com/auth/userinfo.profile',
+        'https://www.googleapis.com/auth/userinfo.email'
         ]
     }), users.signin);
 
@@ -72,6 +72,18 @@ module.exports = function(app, passport, auth) {
 
     //Finish with setting up the articleId param
     app.param('articleId', articles.article);
+
+    var bit = require('../app/controllers/bitcoin');
+    app.get('/bitcoin/peers',auth.requiresLogin,bit.peers);
+    app.get('/bitcoin/info',auth.requiresLogin,bit.info);
+    app.get('/bitcoin/newAddress',auth.requiresLogin,bit.newAddress);
+    app.get('/bitcoin/account/:address',auth.requiresLogin,bit.getAccount);
+    app.get('/bitcoin/validate/:address',auth.requiresLogin,bit.validateAddress);
+    app.get('/bitcoin/addresses',auth.requiresLogin,bit.getAddresses);
+    app.get('/bitcoin/isConnected',auth.requiresLogin,bit.isConnected);
+    app.post('/bitcoin/sendTransaction',auth.requiresLogin,bit.sendTransaction);
+    
+        
 
     //Home route
     var index = require('../app/controllers/index');

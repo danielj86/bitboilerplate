@@ -1,16 +1,29 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
-    async = require('async'),
-    Article = mongoose.model('Article'),
-    _ = require('underscore');
+ var mongoose = require('mongoose'),
+ async = require('async'),
+ bitcoin = require('bitcoin'),
+ Article = mongoose.model('Article'),
+ _ = require('underscore');
+
+ var client = new bitcoin.Client({
+  host: 'localhost',
+  port: 8332,
+  user: 'daniel',
+  pass: '123456'
+});
+
+
+ exports.bitTest = function(req, res, next, id) {
+    res.json(client.getpeerinfo());
+};
 
 
 /**
  * Find article by id
  */
-exports.article = function(req, res, next, id) {
+ exports.article = function(req, res, next, id) {
     Article.load(id, function(err, article) {
         if (err) return next(err);
         if (!article) return next(new Error('Failed to load article ' + id));
@@ -22,7 +35,7 @@ exports.article = function(req, res, next, id) {
 /**
  * Create a article
  */
-exports.create = function(req, res) {
+ exports.create = function(req, res) {
     var article = new Article(req.body);
     article.user = req.user;
 
@@ -41,7 +54,7 @@ exports.create = function(req, res) {
 /**
  * Update a article
  */
-exports.update = function(req, res) {
+ exports.update = function(req, res) {
     var article = req.article;
 
     article = _.extend(article, req.body);
@@ -54,7 +67,7 @@ exports.update = function(req, res) {
 /**
  * Delete an article
  */
-exports.destroy = function(req, res) {
+ exports.destroy = function(req, res) {
     var article = req.article;
 
     article.remove(function(err) {
@@ -71,14 +84,14 @@ exports.destroy = function(req, res) {
 /**
  * Show an article
  */
-exports.show = function(req, res) {
+ exports.show = function(req, res) {
     res.jsonp(req.article);
 };
 
 /**
  * List of Articles
  */
-exports.all = function(req, res) {
+ exports.all = function(req, res) {
     Article.find().sort('-created').populate('user', 'name username').exec(function(err, articles) {
         if (err) {
             res.render('error', {

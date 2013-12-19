@@ -1,4 +1,4 @@
-<div class="navbar-inner" data-ng-controller="HeaderController">
+<!--<div class="navbar-inner" data-ng-controller="HeaderController">
     <ul class="nav">
         <li>
             <a class="brand" href="/">MEAN - A Modern Stack</a>
@@ -25,4 +25,103 @@
             </ul>
         </li>
     </ul>
-</div>
+</div> -->
+
+        <div class="navbar navbar-fixed-top" ng-controller="HeaderController">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="#">Bitjs Boilerplate Admin</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right">
+                            <li class="dropdown">
+                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> 
+                                    {{global.user.username}} <i class="caret"></i>
+
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a tabindex="-1" href="#">Profile</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a tabindex="-1" href="login.html">Logout</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="nav">
+                            <li ui-route="/" ng-class="{active:$uiRoute}">
+                                <a href="#">Dashboard</a>
+                            </li>
+                            <li class="dropdown" ui-route="/transactions" ng-class="{active:$uiRoute}">
+                                <a href="/#!/transactions" data-toggle="dropdown" class="dropdown-toggle">Transactions <b class="caret"></b>
+
+                                </a>
+                                <ul class="dropdown-menu" id="menu1">
+                                    <li>
+                                        <a href="/#!/transactions/send">Send btc <i class="icon-arrow-right"></i>
+                                        </a>
+                                    </li>
+                                      <li>
+                                                <a href="/#!/transactions">Recievedes btc <i class="icon-arrow-left"></i></a>
+                                    </li>
+                                   
+                                    <li class="divider"></li>
+                                    <li>
+                                                <a href="#">Wallets</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown" ui-route="/users" ng-class="{active:$uiRoute}">
+                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Users <i class="caret"></i>
+
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a tabindex="-1" href="#">User List</a>
+                                    </li>
+                                    <li>
+                                        <a tabindex="-1" href="#">Search</a>
+                                    </li>
+                                    <li>
+                                        <a tabindex="-1" href="#">Permissions</a>
+                                    </li>
+                                </ul>
+                            </li>
+                               <li class="dropdown" ui-route="/wallets" ng-class="{active:$uiRoute}">
+                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Wallets <i class="caret"></i>
+
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a tabindex="-1" href="#">Blog</a>
+                                    </li>
+                                    <li>
+                                        <a tabindex="-1" href="#">News</a>
+                                    </li>
+                                    <li>
+                                        <a tabindex="-1" href="#">Custom Pages</a>
+                                    </li>
+                                    <li>
+                                        <a tabindex="-1" href="#">Calendar</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a tabindex="-1" href="#">FAQ</a>
+                                    </li>
+                                </ul>
+                            </li>
+                              <li class="dropdown">
+                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">About</i>
+                            </a>
+                              </li>
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
